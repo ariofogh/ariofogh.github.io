@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ari Ofogh, mechanical engineering student at The George Washington University: projects, resume, courses and experience.">
+<title>Ari Ofogh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Karla:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single scrolling page, sticky menu, each section = loud ALL-CAPS heading + quiet lowercase tagline, generous whitespace, image-led project entries. */
+:root {
+  --bg: #ffffff;
+  --band: #eef2f4;
+  --ink: #15191c;
+  --muted: #5f6b72;
+  --rule: #dbe2e6;
+  --accent: #2f6f8f;
+  --metal: #4f6a78;
+  --ceramic: #dcdfd5;
+  --heat: #c0602a;
+  --wood: #c9ad78;
+  --good: #2e8a5a;
+  --head: "Archivo", "Arial Black", sans-serif;
+  --body: "Karla", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111518; --band: #182025; --ink: #e8eef1; --muted: #9aa8b0; --rule: #2a353c; --accent: #7fb6d3;
+  --metal: #6f8d9d; --ceramic: #cfd2c6; --heat: #e48552; --wood: #a8905f; --good: #5cc28d; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #111518; --band: #182025; --ink: #e8eef1; --muted: #9aa8b0; --rule: #2a353c; --accent: #7fb6d3;
+  --metal: #6f8d9d; --ceramic: #cfd2c6; --heat: #e48552; --wood: #a8905f; --good: #5cc28d; color-scheme: dark }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--ink); font: 400 1.05rem/1.7 var(--body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.in { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--head); margin: 0; line-height: 1.05; text-wrap: balance; }
+p { margin: 0; }
+em { font-style: italic; }
+
+/* nav */
+nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--rule); }
+nav .in { display: flex; align-items: center; gap: 24px; height: 60px; }
+.brand { font: 800 1rem var(--head); color: var(--ink); text-decoration: none; white-space: nowrap; }
+.menu { display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; margin-left: auto; min-width: 0; }
+.menu::-webkit-scrollbar { display: none; }
+.menu a { font: 700 .74rem var(--head); letter-spacing: .14em; color: var(--muted); text-decoration: none; white-space: nowrap; padding: 6px 0; border-bottom: 2px solid transparent; }
+.menu a:hover, .menu a.on { color: var(--ink); border-color: var(--accent); }
+@media (max-width: 760px) { .brand { display: none; } .menu { margin-left: 0; } }
+
+/* hero */
+.hero { padding-block: clamp(56px, 10vw, 120px) clamp(48px, 8vw, 96px); }
+.hero h1 { font-size: clamp(3rem, 10vw, 7rem); font-weight: 900; letter-spacing: -.02em; }
+.hero h1 .caps { text-transform: uppercase; }
+.hero .sub { margin-top: 16px; font: 700 .9rem var(--head); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.hero .lede { margin-top: 22px; max-width: 62ch; font-size: 1.15rem; display: grid; gap: 14px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 28px; font: .82rem var(--mono); color: var(--muted); }
+.facts b { color: var(--ink); font-weight: 500; }
+
+/* sections */
+section { padding-block: clamp(56px, 8vw, 96px); border-top: 1px solid var(--rule); }
+section.alt { background: var(--band); }
+.sh { margin-bottom: 40px; }
+.sh h2 { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 900; text-transform: uppercase; letter-spacing: -.01em; }
+.sh p { margin-top: 6px; font-style: italic; color: var(--muted); font-size: 1.1rem; }
+
+/* projects */
+.project { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 28px 44px; padding-block: 44px; border-top: 1px solid var(--rule); }
+.project:first-of-type { border-top: 0; padding-top: 0; }
+.project h3 { font-size: 1.6rem; font-weight: 800; text-transform: uppercase; }
+.project .meta { font: .8rem var(--mono); color: var(--muted); margin-top: 8px; }
+.project .txt { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.project ul.pts { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
+.gallery { display: grid; gap: 10px; min-width: 0; align-content: start; }
+.gallery .main { aspect-ratio: 4 / 3; width: 100%; max-width: 100%; object-fit: contain; background: var(--band); border: 1px solid var(--rule); display: block; }
+section.alt .gallery .main { background: var(--bg); }
+.thumbs { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; }
+.thumbs button { padding: 0; border: 2px solid transparent; background: var(--band); cursor: pointer; aspect-ratio: 1; overflow: hidden; }
+.thumbs button[aria-pressed="true"] { border-color: var(--accent); }
+.thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 760px) { .project { grid-template-columns: minmax(0,1fr); } }
+.gallery.tall .main { aspect-ratio: 3 / 4; }
+.sim { grid-column: 1 / -1; display: grid; gap: 12px; padding-top: 8px; min-width: 0; }
+.sim-head { display: grid; gap: 4px; }
+.sim h4 { margin: 0; font: 800 .82rem var(--head); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.sim canvas { width: 100%; max-width: 100%; aspect-ratio: 1000 / 560; display: block; border: 1px solid var(--rule); }
+.sim-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font: .82rem var(--mono); color: var(--muted); }
+.sim-ctl input { flex: 1 1 160px; accent-color: var(--heat); }
+.sim-ctl output { color: var(--heat); font-weight: 500; font-variant-numeric: tabular-nums; min-width: 8ch; }
+.sim-ctl button { font: 500 .78rem var(--mono); background: var(--ink); color: var(--bg); border: 0; padding: 6px 14px; cursor: pointer; min-width: 8ch; }
+.sim-read { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-block: 1px solid var(--rule); }
+.sim-read div { display: grid; padding: 10px 12px 10px 0; }
+.sim-read span { font: .7rem var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.sim-read b { font: 800 1.25rem var(--head); font-variant-numeric: tabular-nums; }
+@media (max-width: 560px) { .sim-read { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.stage { position: relative; }
+.stage .main { transition: opacity .25s ease; }
+.stage .arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px; border: 0; border-radius: 50%; background: var(--ink); color: var(--bg); font: 700 1.2rem/1 var(--head); cursor: pointer; opacity: .82; display: grid; place-items: center; }
+.stage .arrow:hover { opacity: 1; background: var(--accent); }
+.stage .prev { left: 10px; } .stage .next { right: 10px; }
+.stage .count { position: absolute; right: 10px; bottom: 10px; font: .74rem var(--mono); background: var(--ink); color: var(--bg); padding: 2px 8px; font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) { .stage .main { transition: none; } }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 4px 0 0; }
+.tags li { font: .76rem var(--mono); border: 1px solid var(--rule); padding: 2px 10px; }
+.stat { display: flex; flex-wrap: wrap; gap: 12px 28px; padding: 12px 0; border-block: 1px solid var(--rule); }
+.stat div { display: grid; }
+.stat b { font: 800 1.5rem var(--head); font-variant-numeric: tabular-nums; }
+.stat span { font: .72rem var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+
+/* FGM live visual */
+.fgm { display: grid; gap: 8px; }
+.fgm canvas { width: 100%; aspect-ratio: 4 / 3; display: block; max-width: 100%; }
+.fgm-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font: .82rem var(--mono); color: var(--muted); }
+.fgm-ctl input { flex: 1 1 160px; accent-color: var(--heat); }
+.fgm-ctl output { color: var(--heat); font-weight: 500; font-variant-numeric: tabular-nums; min-width: 6ch; }
+.cap { font: .78rem var(--mono); color: var(--muted); }
+.math { padding: 4px 0; overflow-x: auto; }
+.math math { font-size: 1.45rem; }
+
+/* IPMC diagram */
+.diagram { width: 100%; max-width: 100%; aspect-ratio: 4 / 3; background: var(--band); border: 1px solid var(--rule); display: block; }
+.diagram text { font: 13px var(--mono); fill: var(--muted); }
+
+/* resume */
+.resume { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px 40px; align-items: start; }
+.resume h3 { font: 800 .8rem var(--head); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.resume ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.btn { display: inline-block; font: 700 .78rem var(--head); letter-spacing: .14em; text-transform: uppercase; color: var(--bg); background: var(--ink); padding: 12px 22px; text-decoration: none; }
+.btn:hover { background: var(--accent); }
+
+/* courses */
+.courses { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0 32px; list-style: none; padding: 0; margin: 0; }
+.courses li { padding: 12px 0; border-bottom: 1px solid var(--rule); display: flex; gap: 14px; align-items: baseline; }
+.courses code { font: .78rem var(--mono); color: var(--accent); min-width: 9ch; }
+
+/* experience */
+.job { display: grid; grid-template-columns: 200px minmax(0,1fr); gap: 8px 36px; padding-block: 28px; border-top: 1px solid var(--rule); }
+.job:first-of-type { border-top: 0; padding-top: 0; }
+.job .when { font: .8rem/1.6 var(--mono); color: var(--muted); padding-top: 6px; }
+.job h3 { font-size: 1.4rem; font-weight: 800; }
+.job .role { font-weight: 700; margin: 2px 0 10px; color: var(--accent); }
+.job ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; max-width: 70ch; }
+@media (max-width: 620px) { .job { grid-template-columns: minmax(0,1fr); } }
+.subhead { font: 800 .82rem var(--head); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-top: 36px; padding-bottom: 20px; border-bottom: 2px solid var(--ink); }
+.subhead + .job { border-top: 0; }
+
+/* about */
+.about-wrap { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: 32px 48px; align-items: start; }
+.about { display: grid; gap: 14px; max-width: 64ch; font-size: 1.1rem; min-width: 0; }
+@media (max-width: 760px) { .about-wrap { grid-template-columns: minmax(0, 1fr); } }
+video.main { aspect-ratio: 3 / 4; width: 100%; max-width: 100%; object-fit: contain; background: var(--band); border: 1px solid var(--rule); display: block; }
+.thumbs .vthumb { position: relative; }
+.thumbs .vthumb::after { content: "▶"; position: absolute; inset: 0; display: grid; place-items: center; color: #ffffff; font-size: 1.1rem; text-shadow: 0 1px 4px rgba(0,0,0,.6); }
+
+/* contact */
+.contact { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; }
+.contact h3 { font: 800 .8rem var(--head); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.copy { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.copy button { font: 500 .74rem var(--mono); background: transparent; color: var(--ink); border: 1px solid var(--ink); padding: 3px 10px; cursor: pointer; }
+
+footer { border-top: 1px solid var(--rule); padding-block: 28px; font-size: .85rem; color: var(--muted); }
+
+html { color-scheme: light; }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+@media (prefers-color-scheme: dark) { html { color-scheme: dark; } }
+</style>
+</head>
+<body>
+<nav aria-label="Sections">
+  <div class="in">
+    <a class="brand" href="#top">Ari Ofogh's Portfolio</a>
+    <div class="menu">
+      <a href="#portfolio">PORTFOLIO</a><a href="#resume">RESUME</a><a href="#courses">COURSES</a><a href="#experience">EXPERIENCE</a><a href="#about">ABOUT ME</a><a href="#contact">CONTACT</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="in">
+    <h1>Ari Ofogh</h1>
+    <div class="lede">
+      <p>Hi! My name is Ari and I am a senior at The George Washington University studying mechanical engineering. As the "caregiver" friend, I've always found fulfillment in offering support and solutions to those in need. This innate drive to assist others, paired with my problem-solving skills, has been the driving force behind my journey into the field of mechanical engineering.</p>
+      <p>I am seeking opportunities in biomechanical, automotive, as well as aerospace-adjacent roles where I can apply design skills and hands-on engineering to make an impact on the real-world.</p>
+    </div>
+    <div class="facts"><span><b>B.S.</b> Mechanical Engineering</span><span><b>Dec 2027</b> expected graduation</span><span><b>CSWA</b> certified</span></div>
+  </div>
+</header>
+
+<section id="portfolio">
+  <div class="in">
+    <div class="sh"><h2>Portfolio</h2><p>check out some of my latest projects</p></div>
+
+    <!-- FGM -->
+    <article class="project">
+      <div class="fgm" aria-label="Interactive cross-section of a functionally graded material">
+        <canvas id="bar" width="800" height="600" role="img" aria-label="Smooth color gradient of ceramic fraction through the thickness, ceramic face on top"></canvas>
+        <div class="fgm-ctl"><label for="n">Grading index</label><input id="n" type="range" min="0.1" max="10" step="0.1" value="2"><output id="nOut" for="n">n = 2.0</output></div>
+        <p class="cap">Drag to change how fast the material shifts from ceramic (top) to metal (bottom).</p>
+      </div>
+      <div class="txt">
+        <div><h3>Functionally Graded Materials for Thermal Management</h3><p class="meta">Senior capstone · GWU–NSWC Crane, with Lockheed Martin · 2026–27</p></div>
+        <p>A functionally graded material (FGM) changes composition gradually through its thickness, for example from a heat-resistant ceramic on the hot face to a tough metal on the cool face. With no sharp interface, there's no single bond line where thermal stress concentrates.</p>
+        <ul class="pts">
+          <li>Designing FGM stacks to improve thermal management and lower thermal stress in aerospace and defense parts.</li>
+          <li>Comparing metal–ceramic and metal–metal pairs by thermal conductivity, thermal expansion, and Young's modulus using FEA in COMSOL and ABAQUS.</li>
+          <li>Built the analytical baseline first: a free tungsten bar heated to 1800 °C (9.35 mm growth over 1 m, zero stress), then Timoshenko's bimetal strip model checked with a Python script.</li>
+        </ul>
+        <div class="math" aria-label="Ceramic volume fraction V sub c of z equals the quantity z over h plus one half, to the power n"><math display="block"><mrow><msub><mi>V</mi><mi>c</mi></msub><mo>(</mo><mi>z</mi><mo>)</mo><mo>=</mo><msup><mrow><mo>(</mo><mfrac><mi>z</mi><mi>h</mi></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>)</mo></mrow><mi>n</mi></msup></mrow></math></div>
+        <div class="stat">
+          <div><b>2.66 m⁻¹</b><span>strip curvature</span></div>
+          <div><b>3.3 mm</b><span>tip deflection</span></div>
+          <div><b>ΔT = 100 °C</b><span>brass / Invar 36</span></div>
+        </div>
+        <ul class="tags"><li>COMSOL</li><li>ABAQUS</li><li>Python</li><li>Thermal stress</li></ul>
+      </div>
+    </article>
+
+    <!-- HaptX glove -->
+    <article class="project">
+      <div class="gallery tall" data-g>
+        <img class="main" src="img/haptx-1.jpg" alt="HaptX haptic glove worn on a hand in the lab">
+        <div class="thumbs">
+          <button type="button" aria-pressed="true" data-src="img/haptx-1.jpg" data-alt="HaptX haptic glove worn on a hand in the lab"><img src="img/haptx-1.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-src="img/haptx-2.jpg" data-alt="Robot arm with a gripper in front of a green screen, next to the control software"><img src="img/haptx-2.jpg" alt=""></button>
+        </div>
+      </div>
+      <div class="txt">
+        <div><h3>Robotic Art Therapy Through Haptic Teleoperation</h3><p class="meta">Research · ART-Med Lab · Current</p></div>
+        <p>Part of the lab's work on assistive robotics. A person wearing a HaptX haptic glove controls a robot remotely and feels what the robot touches, so activities like painting can be done through the robot.</p>
+        <ul class="pts">
+          <li>Implementing tactile sensor mapping and haptic feedback integration using Python, tactile sensors, and robotic glove control software.</li>
+          <li>Goal: enable teleoperated robotic painting and manipulation.</li>
+        </ul>
+        <ul class="tags"><li>Python</li><li>Haptics</li><li>Tactile sensors</li><li>Teleoperation</li></ul>
+      </div>
+    </article>
+
+    <!-- Go2 robot dog head -->
+    <article class="project">
+      <div class="gallery" data-g>
+        <img class="main" src="img/go2-1.jpg" alt="CAD model of a dog-shaped robot head with upright ears, mounted on a neck housing">
+        <div class="thumbs">
+          <button type="button" aria-pressed="true" data-src="img/go2-1.jpg" data-alt="CAD model of a dog-shaped robot head with upright ears, mounted on a neck housing"><img src="img/go2-1.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-src="img/go2-2.jpg" data-alt="Alternate head design with floppy ears on the same neck housing"><img src="img/go2-2.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-src="img/go2-3.jpg" data-alt="Close-up of the floppy-ear head showing the camera opening in the front"><img src="img/go2-3.jpg" alt=""></button>
+        </div>
+      </div>
+      <div class="txt">
+        <div><h3>Robotic Head for the Go2 Robot Dog</h3><p class="meta">Research · ART-Med Lab · Current</p></div>
+        <p>A custom head for the Unitree Go2 robot dog, designed to make the robot friendlier and more expressive for children with autism spectrum disorder. The goal is to support socio-emotional interaction and individualized assistance.</p>
+        <ul class="pts">
+          <li>Designed the head shell and neck housing that mount onto the Go2.</li>
+          <li>Built a front opening and internal mount for a camera, so the robot can see the child it's interacting with.</li>
+          <li>Modeled two versions, one with upright ears and one with floppy ears, to compare how approachable each looks.</li>
+        </ul>
+        <ul class="tags"><li>Fusion 360</li><li>Assistive robotics</li><li>Human–robot interaction</li></ul>
+      </div>
+    </article>
+
+    <!-- Golf ball system -->
+    <article class="project">
+      <div class="gallery" data-g>
+        <img class="main" src="img/golf-5.jpg" alt="Finished golf ball transport subsystem on its plywood base, with the column lift, chain lift, and wiring">
+        <div class="thumbs">
+          <button type="button" aria-pressed="true" data-src="img/golf-5.jpg" data-alt="Finished golf ball transport subsystem on its plywood base, with the column lift, chain lift, and wiring"><img src="img/golf-5.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-src="img/golf-cad.jpg" data-alt="SolidWorks assembly of the cam-driven column lift between two wooden towers"><img src="img/golf-cad.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-src="img/golf-4.jpg" data-alt="3D-printed columns with roller followers and the camshaft with its cam disks, before assembly"><img src="img/golf-4.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-src="img/golf-1.jpg" data-alt="Diagram of the V-channel catcher feeding a cam-driven column lift"><img src="img/golf-1.jpg" alt=""></button>
+        </div>
+      </div>
+      <div class="txt">
+        <div><h3>Electromechanical Golf Ball Transport</h3><p class="meta">MAE 3193 · Mechanical Systems and Design · Team lead · Spring 2026</p></div>
+        <p>Three teammates each built one mechanism of a subsystem that catches a golf ball, carries it, and hands it off to the next team. Our subsystem was one link in a 12-team loop.</p>
+        <ul class="pts">
+          <li>Led a 3-person team through a 2-month build, on a $225 budget, with a 15 ± 0.3 s timing target.</li>
+          <li>Designed and built Mechanism 3: a motor-driven camshaft that raises oscillating inclined columns in sequence, stepping the ball forward and up to the exit slide. Used bevel gears to drive it.</li>
+          <li>Took it from concept sketches through SolidWorks CAD, torque analysis, FEA checks, fabrication, and troubleshooting.</li>
+          <li>Programmed an Arduino with a motor driver and IR break-beam sensors to control timing and motor speed.</li>
+        </ul>
+        <ul class="tags"><li>SolidWorks</li><li>Arduino</li><li>Cam design</li><li>Team lead</li></ul>
+      </div>
+      <div class="sim">
+        <div class="sim-head">
+          <h4>Mechanism 3 simulation</h4>
+          <p class="cap">Four side-by-side columns driven by cams on one shaft, each 90° out of phase. Each column peaks while the next is still rising, so the ball steps forward and rolls onto the exit slide.</p>
+        </div>
+        <canvas id="cam" role="img" aria-label="Animated cam-follower lift: a golf ball drops from the hood, rides four columns driven by phased cams on a shared crankshaft, and rolls down the exit slide"></canvas>
+        <div class="sim-ctl">
+          <button id="camPlay" type="button">Pause</button>
+          <label for="rpm">Shaft speed</label>
+          <input id="rpm" type="range" min="10" max="30" step="0.5" value="20">
+          <output id="rpmOut" for="rpm">20.0 rpm</output>
+        </div>
+        <div class="sim-read">
+          <div><span>Shaft angle</span><b id="angOut">0°</b></div>
+          <div><span>Ball transit</span><b id="tOut">0.00 s</b></div>
+          <div><span>Target</span><b>5.0 s</b></div>
+          <div><span>Status</span><b id="stOut">running</b></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Tripod -->
+    <article class="project">
+      <div class="gallery" data-g>
+        <img class="main" src="img/tripod-1.jpg" alt="Finished aluminum tripod holding a phone on a lab bench">
+        <div class="thumbs">
+          <button type="button" aria-pressed="true" data-src="img/tripod-1.jpg" data-alt="Finished aluminum tripod holding a phone on a lab bench"><img src="img/tripod-1.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-src="img/tripod-2.jpg" data-alt="Tripod with phone mounted, viewed from the side"><img src="img/tripod-2.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-src="img/tripod-3.jpg" data-alt="Machined aluminum base with leg slots"><img src="img/tripod-3.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-src="img/tripod-4.jpg" data-alt="Base part held in a mill fixture"><img src="img/tripod-4.jpg" alt=""></button>
+        </div>
+      </div>
+      <div class="txt">
+        <div><h3>Universal Phone &amp; Camera Tripod</h3><p class="meta">MAE 3192 · Manufacturing · Team of 5 · Fall 2025</p></div>
+        <p>A tripod machined from aluminum with shoulder-bolted legs, a slotted base, and a clamp that holds a phone or camera.</p>
+        <ul class="pts">
+          <li>Owned the full assembly CAD and drawings, so the base, legs, clamp, and screws fit together.</li>
+          <li>Started the legs on the lathe and mill and helped carry out the process plan for the base.</li>
+          <li>Widened the leg slots during the build so the legs seated properly. Learned to change the small part, not the big one.</li>
+        </ul>
+        <ul class="tags"><li>SolidWorks</li><li>Lathe &amp; mill</li><li>Process planning</li></ul>
+      </div>
+    </article>
+
+    <!-- Ferris wheel -->
+    <article class="project">
+      <div class="gallery" data-g>
+        <img class="main" src="img/ferris-1.jpg" alt="Exploded CAD view of the toy Ferris wheel drivetrain">
+        <div class="thumbs">
+          <button type="button" aria-pressed="true" data-src="img/ferris-1.jpg" data-alt="Exploded CAD view of the toy Ferris wheel drivetrain"><img src="img/ferris-1.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-src="img/ferris-2.jpg" data-alt="Rendered Ferris wheel assembly with motor"><img src="img/ferris-2.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-src="img/ferris-3.jpg" data-alt="Rear view of the Ferris wheel showing the belt and gears"><img src="img/ferris-3.jpg" alt=""></button>
+        </div>
+      </div>
+      <div class="txt">
+        <div><h3>Toy Ferris Wheel Drivetrain</h3><p class="meta">MAE 3191 · Mechanical Design · Team of 3</p></div>
+        <p>A toy Ferris wheel driven by a small DC motor. The motor spins at 2500 rpm with only 0.0565 N·m of torque, so most of the design is a large speed reduction.</p>
+        <ul class="pts">
+          <li>Designed the power transmission: spur gears into a 40:1 worm and worm gear, then a timing belt to the wheel. The worm can't be back-driven, so the wheel holds position when the motor stops.</li>
+          <li>Ran the shaft analysis on a 3 mm 12L14 steel shaft: loads, shear and moment diagrams, von Mises stress. Factor of safety was 7.05.</li>
+          <li>Wrote and solved two homework problems on gear trains and shaft torque for the next year's class.</li>
+        </ul>
+        <div class="stat">
+          <div><b>40 : 1</b><span>worm reduction</span></div>
+          <div><b>7.05</b><span>shaft factor of safety</span></div>
+        </div>
+        <ul class="tags"><li>SolidWorks</li><li>Gear design</li><li>Shaft analysis</li></ul>
+      </div>
+    </article>
+
+    <!-- IPMC -->
+    <article class="project">
+      <div class="gallery tall" data-g>
+        <img class="main" src="img/ipmc-4.jpg" alt="IPMC actuator strip held by alligator clips over a beaker of solution">
+        <div class="thumbs">
+          <button type="button" aria-pressed="true" data-src="img/ipmc-4.jpg" data-alt="IPMC actuator strip held by alligator clips over a beaker of solution"><img src="img/ipmc-4.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-src="img/ipmc-3.jpg" data-alt="Fabricated IPMC strip in a petri dish on the lab bench"><img src="img/ipmc-3.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-src="img/ipmc-2.jpg" data-alt="Labeled beakers of processing solutions and a petri dish"><img src="img/ipmc-2.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-src="img/ipmc-1.jpg" data-alt="DC power supply used to drive the actuator during testing"><img src="img/ipmc-1.jpg" alt=""></button>
+        </div>
+      </div>
+      <div class="txt">
+        <div><h3>3D-Printed IPMC Soft Actuators</h3><p class="meta">Research · ART-Med Lab · MAE Department</p></div>
+        <p>Ionic polymer-metal composites (IPMCs) are soft actuators that bend when a few volts are applied, because ions inside the polymer move toward one electrode. They're light, flexible, and quiet, which makes them a good fit for robots that work around people.</p>
+        <ul class="pts">
+          <li>Compared two approaches: a low-cost, biocompatible, direct-ink-written membrane (124° bend, 0.82 cm⁻¹ curvature, 0.76 mN blocked force) and fused-filament printed IPMCs controlled with Bayesian optimization.</li>
+          <li>Proposed combining the two: biocompatible printed membranes with machine-learning control to recover force output.</li>
+          <li>In the lab, designed and fabricated an IPMC actuator: material processing, electrode deposition, and electromechanical displacement testing.</li>
+        </ul>
+        <ul class="tags"><li>Soft robotics</li><li>3D printing</li><li>Bayesian optimization</li></ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="resume" class="alt">
+  <div class="in">
+    <div class="sh"><h2>Resume</h2><p>check out my resume</p></div>
+    <div class="resume">
+      <div><h3>Design &amp; CAD</h3><ul><li>SolidWorks (CSWA)</li><li>AutoCAD</li><li>Fusion 360</li><li>GD&amp;T</li></ul></div>
+      <div><h3>Analysis</h3><ul><li>SolidWorks Simulation (FEA)</li><li>COMSOL, ABAQUS</li><li>MATLAB, Simulink</li><li>Python</li></ul></div>
+      <div><h3>Shop</h3><ul><li>Lathe &amp; mill</li><li>3D printing</li><li>Arduino</li></ul></div>
+      <div><h3>Languages</h3><ul><li>Persian</li><li>English</li><li>Conversational Turkish</li><li>Conversational Spanish</li></ul></div>
+    </div>
+    <p style="margin-top:36px"><a class="btn" href="resume.pdf" target="_blank" rel="noopener">Open full resume (PDF)</a></p>
+  </div>
+</section>
+
+<section id="courses">
+  <div class="in">
+    <div class="sh"><h2>Courses</h2><p>what I've been studying at GW</p></div>
+    <ul class="courses">
+      <li><code>MAE 1004</code>Engineering Drawing &amp; Computer Graphics</li>
+      <li><code>APSC 2057</code>Statics</li>
+      <li><code>APSC 2058</code>Dynamics</li>
+      <li><code>MAE 2131</code>Thermodynamics</li>
+      <li><code>CE 2220</code>Mechanics of Solids</li>
+      <li><code>MAE 3119</code>Electronics &amp; Devices</li>
+      <li><code>MAE 3126</code>Fluid Mechanics</li>
+      <li><code>MAE 3128</code>Biomechanics</li>
+      <li><code>MAE 3134</code>Linear System Dynamics</li>
+      <li><code>MAE 3166</code>Materials Engineering</li>
+      <li><code>MAE 3187</code>Heat Transfer</li>
+      <li><code>MAE 3191</code>Mechanical Design</li>
+      <li><code>MAE 3192</code>Manufacturing Processes &amp; Systems</li>
+      <li><code>MAE 3193</code>Mechanical Systems and Design</li>
+      <li><code>MAE 4149</code>Thermal Systems Design</li>
+    </ul>
+  </div>
+</section>
+
+<section id="experience" class="alt">
+  <div class="in">
+    <div class="sh"><h2>Experience</h2><p>where i've been working</p></div>
+    <div class="job">
+      <p class="when">Oct 2024 – Present<br>Washington, D.C.</p>
+      <div>
+        <h3>Assistive Robotics &amp; Telemedicine (ART-Med) Lab</h3>
+        <p class="role">Undergraduate Research Assistant</p>
+        <ul>
+          <li>Research on combining human intelligence with robotics to support adolescents with disabilities, socially and emotionally.</li>
+          <li>Implementing tactile sensor mapping and haptic feedback in Python with a robotic glove, for teleoperated robotic painting and manipulation.</li>
+          <li>Designed and fabricated an IPMC actuator and tested its displacement response.</li>
+          <li>Developed a robotic head prototype for the Go2 robot dog to support children with autism spectrum disorder.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job">
+      <p class="when">Jan 2025 – Present<br>Washington, D.C.</p>
+      <div>
+        <h3>GW Biomedical Engineering Society</h3>
+        <p class="role">Vice President of Operations &amp; Finance</p>
+        <ul>
+          <li>Manage the club budget, track expenses, and handle reimbursements.</li>
+          <li>Write funding proposals to student government for events and resources.</li>
+          <li>Give weekly financial updates to the executive board.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job">
+      <p class="when">Aug 2026 – Present<br>Washington, D.C.</p>
+      <div>
+        <h3>Zaytinya, José Andrés Group</h3>
+        <p class="role">Host</p>
+        <ul>
+          <li>Manage reservations, waitlists, and seating flow, and coordinate with servers and kitchen staff during peak service.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="subhead">Before GW</h3>
+    <div class="job">
+      <p class="when">Jun 2023 – Aug 2023<br>Washington, D.C.</p>
+      <div>
+        <h3>Rumi's Kitchen</h3>
+        <p class="role">Host</p>
+        <ul>
+          <li>Managed reservations, waitlists, and table assignments, and coordinated with servers, bussers, and kitchen staff during peak service.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job">
+      <p class="when">Sep 2022 – Oct 2022<br>Washington, D.C.</p>
+      <div>
+        <h3>GW Hospital, Ron &amp; Joy Paul Kidney Center</h3>
+        <p class="role">Intern</p>
+        <ul>
+          <li>Educated patients about kidney disease at outreach events in underserved D.C. communities, took blood pressure readings, and helped with testing and referrals to prevent dialysis.</li>
+          <li>Compiled and organized 200+ patient data entries, including blood pressure statistics.</li>
+          <li>Scribed at kidney transplant list conferences, documenting the nephrologists' discussions on transplant priority.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job">
+      <p class="when">Jun 2022 – Aug 2022<br>Germantown, MD</p>
+      <div>
+        <h3>Amarex Clinical Research</h3>
+        <p class="role">Intern</p>
+        <ul>
+          <li>Worked with regulatory staff to organize filings, applications, and reports for domestic and global products.</li>
+          <li>Converted FDA documents, including IND applications, protocols, and clinical study reports, using LORENZ Validator and Adobe Acrobat.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="in">
+    <div class="sh"><h2>About me</h2><p>an engineer, among other things</p></div>
+    <div class="about-wrap">
+    <div class="gallery tall" data-g>
+      <img class="main" src="img/about-3.jpg" alt="Ari standing on a rocky summit with arms raised, ocean below">
+      <video class="main" muted loop playsinline preload="none" poster="img/about-video.jpg" hidden></video>
+      <div class="thumbs">
+        <button type="button" aria-pressed="true" data-src="img/about-3.jpg" data-alt="Ari standing on a rocky summit with arms raised, ocean below"><img src="img/about-3.jpg" alt=""></button>
+        <button type="button" aria-pressed="false" data-src="img/about-5.jpg" data-alt="Ari in front of the Christ the Redeemer statue"><img src="img/about-5.jpg" alt=""></button>
+        <button type="button" aria-pressed="false" data-src="img/about-6.jpg" data-alt="Large waterfalls with mist rising over a gorge"><img src="img/about-6.jpg" alt=""></button>
+        <button type="button" aria-pressed="false" data-src="img/about-2.jpg" data-alt="Ari and a friend by the sea below a cliffside village of colorful houses"><img src="img/about-2.jpg" alt=""></button>
+        <button type="button" aria-pressed="false" data-src="img/about-1.jpg" data-alt="Ari holding a large Senegal flag with a friend outside a stadium"><img src="img/about-1.jpg" alt=""></button>
+        <button type="button" aria-pressed="false" data-src="img/about-4.jpg" data-alt="Painted school building with a mural, children playing in the courtyard"><img src="img/about-4.jpg" alt=""></button>
+        <button type="button" class="vthumb" aria-pressed="false" data-video="img/about-video.mp4" data-alt="Video of a palm-lined beach path"><img src="img/about-video.jpg" alt=""></button>
+      </div>
+    </div>
+    <div class="about">
+      <h3 class="subhead" style="margin-top:0">Why travel?</h3>
+      <p>One might ask, "why put a travel blog in a portfolio? It has nothing to do with engineering." As an engineer, I'm always on the lookout for new and exciting challenges. That's why I have included a section in my portfolio dedicated to my travel adventures. Traveling is not only exhilarating but also a fantastic way to develop skills and traits that are essential for success in any field, especially engineering.</p>
+      <p>From hiking through remote mountain ranges to exploring bustling cities on my own, I have discovered that travel is a gateway to personal and professional growth. It requires problem-solving skills, adaptability, and an adventurous spirit, all of which are crucial qualities for engineers in this day and age. Not only does traveling push you outside of your comfort zone, but it also exposes you to different cultures and ways of thinking. It encourages an open mind and fosters creativity, which are essential qualities for engineers. It allows you to immerse yourself in new experiences, meet fascinating people, and learn about the world in ways that can't be replicated in a classroom or laboratory.</p>
+      <p>I believe that engineers who travel gain a unique perspective that enables them to tackle complex problems with more creativity and resourcefulness. These experiences can also help build self-confidence and resilience, both of which are essential in the fast-paced and often unpredictable field of engineering. So, I hope you enjoy the short stories &amp; images of my travels and know that every experience I have encountered has fundamentally changed the way I look at the world and redefined my engineering pursuits.</p>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alt">
+  <div class="in">
+    <div class="sh"><h2>Contact</h2><p>let's talk</p></div>
+    <div class="contact">
+      <div><h3>Location</h3><p>Washington, D.C.</p></div>
+      <div><h3>Email</h3><div class="copy"><span id="email">shapari.ofogh@gwu.edu</span><button id="copy" type="button">Copy</button></div></div>
+      <div><h3>Connect</h3><p><a href="https://www.linkedin.com/in/shapari-ofogh/" target="_blank" rel="noopener">LinkedIn</a></p></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="in">© 2026 Ari Ofogh</div></footer>
+
+<script>
+(function () {
+  // FGM cross-section
+  const cv = document.getElementById('bar'), ctx = cv.getContext('2d');
+  const slider = document.getElementById('n'), out = document.getElementById('nOut');
+  const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const rgb = h => { h = h.replace('#', ''); return [0, 2, 4].map(i => parseInt(h.slice(i, i + 2), 16)); };
+  function draw() {
+    const n = +slider.value; out.textContent = 'n = ' + n.toFixed(1);
+    const W = cv.width, H = cv.height;
+    // smooth blend: each row's color = metal + (ceramic - metal) * Vc(z)
+    const m = rgb(css('--metal')), c = rgb(css('--ceramic'));
+    for (let y = 0; y < H; y++) {
+      const vc = Math.pow(1 - (y + 0.5) / H, n);
+      ctx.fillStyle = 'rgb(' + m.map((v, i) => Math.round(v + (c[i] - v) * vc)).join(',') + ')';
+      ctx.fillRect(0, y, W, 1);
+    }
+    const x0 = W - 190, heat = css('--heat');
+    ctx.strokeStyle = heat; ctx.lineWidth = 2; ctx.setLineDash([6, 6]);
+    ctx.beginPath(); ctx.moveTo(x0, 0); ctx.lineTo(x0, H); ctx.stroke(); ctx.setLineDash([]);
+    ctx.lineWidth = 5; ctx.beginPath();
+    for (let i = 0; i <= 100; i++) { const t = i / 100, y = (1 - t) * H, x = x0 + Math.pow(t, n) * 170; i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+    ctx.stroke();
+    ctx.fillStyle = heat; ctx.font = '500 22px "JetBrains Mono", monospace';
+    ctx.fillText('ceramic', 16, 34); ctx.fillText('metal', 16, H - 16); ctx.fillText('Vc(z)', x0 + 12, H - 16);
+  }
+  slider.addEventListener('input', draw);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+  new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  draw(); document.fonts && document.fonts.ready.then(draw);
+
+  // galleries
+  // ---- Mechanism 3 cam-follower simulation ----
+  (function () {
+    const cv = document.getElementById('cam'); if (!cv) return;
+    const ctx = cv.getContext('2d'), W = 1000, H = 560, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = W * dpr; cv.height = H * dpr; ctx.scale(dpr, dpr);
+    const rpmIn = document.getElementById('rpm'), rpmOut = document.getElementById('rpmOut');
+    const angOut = document.getElementById('angOut'), tOut = document.getElementById('tOut'), stOut = document.getElementById('stOut');
+    const playBtn = document.getElementById('camPlay');
+    const deckY = 330, deckH = 26, shaftY = 455, r = 13;
+    // column 0 sits flush with the deck at its lowest so it can take the ball from the V-groove
+    // columns stand side by side, as in the built mechanism (52 px pitch = column width)
+    const cols = [{ x: 400, h0: 0, L: 70, R: 40 }, { x: 452, h0: 50, L: 40, R: 30 }, { x: 504, h0: 50, L: 40, R: 30 }, { x: 556, h0: 50, L: 40, R: 30 }];
+    const rad = d => d * Math.PI / 180;
+    const f = phi => 0.5 - 0.5 * Math.cos(rad(phi));              // harmonic cam: 0 at bottom, 1 at peak
+    const top = (i, th) => deckY - (cols[i].h0 + cols[i].L * f(th - 90 * i));
+    const lerp = (a, b, u) => a + (b - a) * u;
+    const slideA = [584, 250], slideB = [900, 342];
+    const hops = [[180, 210, 0, 1], [270, 300, 1, 2], [360, 390, 2, 3]];
+    const rides = [[0, 180, 0], [210, 270, 1], [300, 360, 2], [390, 450, 3]];
+    const CYCLE_END = 540, TOTAL = 600;                             // ball path spans -60..540 deg of shaft rotation
+
+    function ball(p, th) {
+      if (p < -25) { const u = (p + 60) / 35; return [lerp(345, 340, u), lerp(60, deckY - r - 2, u * u)]; }
+      if (p < 0) { const u = (p + 25) / 25; return [lerp(340, cols[0].x, u), lerp(deckY - r - 2, top(0, th) - r, u)]; }
+      for (const [a, b, i] of rides) if (p >= a && p < b) return [cols[i].x, top(i, th) - r];
+      for (const [a, b, i, j] of hops) if (p >= a && p < b) {
+        const u = (p - a) / (b - a), y0 = top(i, th - (p - a)) - r, y1 = top(j, th) - r;
+        return [lerp(cols[i].x, cols[j].x, u), lerp(y0, y1, u) - 16 * Math.sin(Math.PI * u)];
+      }
+      if (p >= 450 && p < 480) { const u = (p - 450) / 30, y0 = top(3, th - (p - 450)) - r;
+        return [lerp(cols[3].x, slideA[0] + 30, u), lerp(y0, slideA[1] + 14 - r - 6, u) - 16 * Math.sin(Math.PI * u)]; }
+      if (p >= 480 && p < CYCLE_END) { const u = (p - 480) / 60, s = u * u, x0 = slideA[0] + 30;
+        const x = lerp(x0, slideB[0] - 18, s), m = (slideB[1] - slideA[1]) / (slideB[0] - slideA[0]);
+        return [x, slideA[1] + m * (x - slideA[0]) - r - 6]; }
+      return null;
+    }
+
+    let th = 0, last = null, playing = !matchMedia('(prefers-reduced-motion: reduce)').matches, trail = [];
+    if (!playing) playBtn.textContent = 'Play';
+    const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+    function draw() {
+      const C = { band: css('--band'), bg: css('--bg'), ink: css('--ink'), muted: css('--muted'), rule: css('--rule'), accent: css('--accent'), heat: css('--heat'), wood: css('--wood'), good: css('--good') };
+      const rpm = +rpmIn.value, p = ((th + 60) % 720 + 720) % 720 - 60;
+      ctx.clearRect(0, 0, W, H); ctx.fillStyle = C.band; ctx.fillRect(0, 0, W, H);
+      ctx.font = '500 15px "JetBrains Mono", monospace';
+
+      // frame legs, motor, shaft
+      ctx.fillStyle = C.accent; ctx.fillRect(22, deckY + deckH, 22, H); ctx.fillRect(956, deckY + deckH, 22, H);
+      ctx.fillStyle = C.muted; ctx.fillRect(110, shaftY - 4, 790, 8);
+      ctx.fillStyle = C.accent; ctx.fillRect(52, shaftY - 26, 62, 52);
+      ctx.fillStyle = C.bg; ctx.fillText('Motor', 58, shaftY + 5);
+
+      // cams, followers, push rods
+      cols.forEach((c, i) => {
+        const phi = th - 90 * i, e = c.L / 2, cy = shaftY + e * Math.cos(rad(phi)), camTop = cy - c.R;
+        ctx.fillStyle = C.muted; ctx.fillRect(c.x - 4, deckY + deckH, 8, Math.max(0, camTop - 18 - deckY - deckH));
+        ctx.beginPath(); ctx.arc(c.x, cy, c.R, 0, 7); ctx.fillStyle = C.bg; ctx.globalAlpha = .85; ctx.fill(); ctx.globalAlpha = 1; ctx.lineWidth = 2.5; ctx.strokeStyle = C.muted; ctx.stroke();
+        ctx.beginPath(); ctx.arc(c.x, shaftY, 6, 0, 7); ctx.fillStyle = C.ink; ctx.fill();
+        ctx.beginPath(); ctx.arc(c.x, camTop - 9, 9, 0, 7); ctx.fillStyle = C.muted; ctx.fill();
+        ctx.fillRect(c.x - 14, camTop - 26, 28, 8);
+      });
+      ctx.fillStyle = C.muted; ctx.fillText('Shared crankshaft', 420, H - 12);
+
+      // deck
+      ctx.fillStyle = C.wood; ctx.fillRect(22, deckY, 956, deckH);
+
+      // hood, backstop, V-groove, exit slide
+      ctx.strokeStyle = C.muted; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(290, 28); ctx.lineTo(330, 100); ctx.moveTo(400, 28); ctx.lineTo(360, 100); ctx.stroke();
+      ctx.fillStyle = C.muted; ctx.fillText('Hood', 412, 40);
+      ctx.beginPath(); ctx.moveTo(312, 150); ctx.lineTo(312, deckY); ctx.moveTo(314, deckY - 3); ctx.lineTo(374, deckY - 1); ctx.stroke();
+      ctx.fillText('V-groove', 222, deckY - 40);
+      ctx.strokeStyle = C.rule; ctx.lineWidth = 14; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(slideA[0], slideA[1] + 14); ctx.lineTo(slideB[0] - 8, slideB[1] - 8); ctx.stroke(); ctx.lineCap = 'butt';
+      ctx.fillStyle = C.muted; ctx.fillText('Exit slide', 800, 290);
+
+      // columns
+      cols.forEach((c, i) => {
+        const t = top(i, th);
+        ctx.fillStyle = C.wood; ctx.fillRect(c.x - 26, t, 52, deckY - t + 1);
+        ctx.strokeStyle = C.ink; ctx.globalAlpha = .35; ctx.lineWidth = 1; ctx.strokeRect(c.x - 26, t, 52, deckY - t); ctx.globalAlpha = 1;
+        ctx.fillStyle = C.muted; ctx.fillRect(c.x - 26, t - 7, 52, 7);
+      });
+
+      // ball + trail
+      const b = ball(p, th);
+      if (p < -55) trail = [];
+      if (b) {
+        trail.push(b); if (trail.length > 400) trail.shift();
+        ctx.setLineDash([6, 7]); ctx.strokeStyle = C.heat; ctx.lineWidth = 2; ctx.beginPath();
+        trail.forEach(([x, y], k) => k ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.stroke(); ctx.setLineDash([]);
+        ctx.beginPath(); ctx.arc(b[0], b[1], r, 0, 7); ctx.fillStyle = '#ffffff'; ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = C.heat; ctx.stroke();
+        ctx.beginPath(); ctx.arc(b[0], b[1], r * .55, .3, 2.8); ctx.stroke();
+      }
+
+      // readouts
+      const secPerDeg = 60 / (rpm * 360);
+      angOut.textContent = Math.round(((th % 360) + 360) % 360) + '°';
+      if (p <= CYCLE_END) { tOut.textContent = ((p + 60) * secPerDeg).toFixed(2) + ' s'; stOut.textContent = 'in transit'; stOut.style.color = C.ink; }
+      else { const T = TOTAL * secPerDeg, ok = Math.abs(T - 5) <= 0.3; tOut.textContent = T.toFixed(2) + ' s';
+        stOut.textContent = ok ? 'on target' : (T > 5 ? 'too slow' : 'too fast'); stOut.style.color = ok ? C.good : C.heat; }
+    }
+
+    function frame(ts) {
+      if (last !== null && playing) th += (+rpmIn.value) * 6 * Math.min(0.05, (ts - last) / 1000);
+      last = ts; draw(); requestAnimationFrame(frame);
+    }
+    rpmIn.addEventListener('input', () => { rpmOut.textContent = (+rpmIn.value).toFixed(1) + ' rpm'; });
+    playBtn.addEventListener('click', () => { playing = !playing; playBtn.textContent = playing ? 'Pause' : 'Play'; });
+    requestAnimationFrame(frame);
+  })();
+
+  // slideshows: arrows, counter, thumbnails, arrow keys and swipe
+  document.querySelectorAll('[data-g]').forEach(g => {
+    const main = g.querySelector('.main'), btns = [...g.querySelectorAll('.thumbs button')];
+    const stage = document.createElement('div'); stage.className = 'stage';
+    main.replaceWith(stage); stage.appendChild(main);
+    const vid = g.querySelector('video.main'); if (vid) stage.appendChild(vid);
+    const count = document.createElement('span'); count.className = 'count';
+    const mk = (cls, label, txt) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'arrow ' + cls; b.setAttribute('aria-label', label); b.textContent = txt; stage.appendChild(b); return b; };
+    const prev = mk('prev', 'Previous photo', '‹'), next = mk('next', 'Next photo', '›');
+    stage.appendChild(count);
+    let i = 0;
+    const show = k => {
+      i = (k + btns.length) % btns.length; const b = btns[i];
+      if (b.dataset.video && vid) {
+        main.hidden = true; vid.hidden = false;
+        if (!vid.src) vid.src = b.dataset.video;
+        vid.setAttribute('aria-label', b.dataset.alt); vid.play().catch(() => {});
+      } else {
+        if (vid) { vid.pause(); vid.hidden = true; }
+        main.hidden = false; main.style.opacity = 0;
+        setTimeout(() => { main.src = b.dataset.src; main.alt = b.dataset.alt; main.style.opacity = 1; }, 120);
+      }
+      btns.forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+      count.textContent = (i + 1) + ' / ' + btns.length;
+    };
+    count.textContent = '1 / ' + btns.length;
+    if (btns.length < 2) { prev.hidden = next.hidden = true; }
+    prev.addEventListener('click', () => show(i - 1));
+    next.addEventListener('click', () => show(i + 1));
+    btns.forEach((b, k) => b.addEventListener('click', () => show(k)));
+    g.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
+    let x0 = null;
+    stage.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1)); x0 = null; });
+  });
+
+  // active menu item
+  const links = [...document.querySelectorAll('.menu a')];
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+  }), { rootMargin: '-40% 0px -55% 0px' });
+  document.querySelectorAll('section[id]').forEach(s => io.observe(s));
+
+  document.getElementById('copy').addEventListener('click', e => {
+    const el = document.getElementById('email');
+    navigator.clipboard.writeText(el.textContent).then(() => e.target.textContent = 'Copied', () => {
+      const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      e.target.textContent = 'Press Ctrl+C';
+    });
+  });
+})();
+</script>
+</body>
+</html>
